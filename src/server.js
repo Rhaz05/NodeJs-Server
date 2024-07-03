@@ -13,7 +13,7 @@ const serverStart = () => {
   logger.info("--------------------Server starting--------------------");
   logger.info(`Running application on ${CONFIG.NODE_ENV} Environment`);
 
-  logger.info("Initializing database connection");
+  logger.info("Initializing Database & Session Connection");
   CheckConnection();
   initSession(app);
 
@@ -24,8 +24,15 @@ const serverStart = () => {
   logger.info("Importing routes");
   initRoutes(app);
 
-  app.listen(process.env.PORT, () => {
-    logger.info(`Server running on http://localhost:${process.env.PORT}`);
+  const server = app.listen(CONFIG.PORT, () => {
+    logger.info(`Server listening on port ${CONFIG.PORT}`);
+  });
+
+  process.on("SIGINT", () => {
+    logger.info("SIGINT signal received, Closing the application");
+    server.close();
+    logger.info("--------------------Server Closed----------------------");
+    process.exit(0);
   });
 };
 
