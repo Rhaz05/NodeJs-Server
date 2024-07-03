@@ -1,4 +1,4 @@
-import winston from "winston";
+import winston from 'winston'
 
 const customLevels = {
   levels: {
@@ -11,17 +11,17 @@ const customLevels = {
     trace: 6,
   },
   colors: {
-    fatal: "red",
-    error: "red",
-    warn: "yellow",
-    http: "white",
-    info: "green",
-    debug: "blue",
-    trace: "cyan",
+    fatal: 'red',
+    error: 'red',
+    warn: 'yellow',
+    http: 'white',
+    info: 'green',
+    debug: 'blue',
+    trace: 'cyan',
   },
-};
+}
 
-const { combine, timestamp, json, printf, colorize } = winston.format;
+const { combine, timestamp, json, printf, colorize } = winston.format
 
 const consoleTransport = new winston.transports.Console({
   format: combine(
@@ -29,12 +29,12 @@ const consoleTransport = new winston.transports.Console({
     timestamp(),
     printf((info) => `[${info.timestamp}] ${info.level}: ${info.message}`)
   ),
-});
+})
 
 export const logger = winston.createLogger({
   levels: customLevels.levels,
   format: winston.format.json(),
-});
+})
 
 // Always add the console transport even when in production
-logger.add(consoleTransport);
+logger.add(consoleTransport)

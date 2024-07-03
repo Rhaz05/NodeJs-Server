@@ -1,5 +1,5 @@
-import "dotenv/config";
-import { z } from "zod";
+import 'dotenv/config'
+import { z } from 'zod'
 
 const envSchema = z.object({
   NODE_ENV: z.string(),
@@ -7,18 +7,16 @@ const envSchema = z.object({
   DB_USER: z.string(),
   DB_PASSWORD: z.string(),
   DB_DATABASE: z.string(),
-  SERVER_IS_HTTPS: z
-    .string()
-    .transform((value) => (value === "true" ? true : false)),
+  SERVER_IS_HTTPS: z.string().transform((value) => (value === 'true' ? true : false)),
   SERVER_SESSION_SECRET: z.string(),
   MONGODB_URL: z.string(),
   PORT: z.coerce.number(),
-});
+})
 
-const validatedEnv = envSchema.safeParse(process.env);
+const validatedEnv = envSchema.safeParse(process.env)
 
 if (!validatedEnv.success) {
-  throw new Error(JSON.stringify(validatedEnv.error.flatten().fieldErrors));
+  throw new Error(JSON.stringify(validatedEnv.error.flatten().fieldErrors))
 }
 
 export const CONFIG = {
@@ -31,4 +29,4 @@ export const CONFIG = {
   SERVER_SESSION_SECRET: validatedEnv.data.SERVER_SESSION_SECRET,
   MONGODB_URL: validatedEnv.data.MONGODB_URL,
   PORT: validatedEnv.data.PORT,
-};
+}
