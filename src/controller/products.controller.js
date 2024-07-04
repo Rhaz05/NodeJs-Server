@@ -13,7 +13,7 @@ export const getAllProducts = asyncHandler(async (req, res) => {
       'category',
     ])
 
-    logger.info(insert)
+    // logger.info(insert)
     res.status(200), res.json(products)
   } catch (err) {
     logger.error(err.message)
