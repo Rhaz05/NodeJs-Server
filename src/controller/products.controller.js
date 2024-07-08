@@ -1,7 +1,7 @@
 import asyncHandler from 'express-async-handler'
 import { Select } from '../db/db.js'
 import { logger } from '../util/logger.util.js'
-import { InsertStatement } from '../util/customHelper.util.js'
+import { InsertStatement } from '../util/helper.util.js'
 
 export const getAllProducts = asyncHandler(async (req, res) => {
   try {
