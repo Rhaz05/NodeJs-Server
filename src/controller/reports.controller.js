@@ -19,7 +19,7 @@ export const salesReport = asyncHandler(async (req, res) => {
       style: 'header',
     }
     const subTitlePage = defaultSubtitle('employeeName', 'date')
-    const columnWidth = [] //add your column width
+    const columnWidth = ['*', '*'] //add your column width
     const $tableHeader = tableHeader(['name', 'age'], 'header')
     const $tableContent = tableContent([{ name: 'sampleName', age: 23 }], 'tableContent')
 
